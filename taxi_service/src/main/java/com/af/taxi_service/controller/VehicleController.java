@@ -32,6 +32,11 @@ public class VehicleController {
 	private VehicleService vehicleService;
 
 
+	/**
+	 * Gets the all vehicles.
+	 *
+	 * @return the all vehicles
+	 */
 	@GetMapping(value = "/all")
 	public ResponseEntity<Object> getAllVehicles() {
 		SuccessAndErrorDetailsResource responseMessage = new SuccessAndErrorDetailsResource();
@@ -45,7 +50,12 @@ public class VehicleController {
 	}
 	
 	
-	
+	/**
+	 * Gets the vehicle by id.
+	 *
+	 * @param id - the id
+	 * @return the vehicle by id
+	 */
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Object> getVehicleById(@PathVariable(value = "id", required = true) int id) {
 		SuccessAndErrorDetailsResource responseMessage = new SuccessAndErrorDetailsResource();
@@ -59,6 +69,12 @@ public class VehicleController {
 	}
 	
 	
+	/**
+	 * Adds the vehicle.
+	 *
+	 * @param vehicleAddResource - the vehicle add resource
+	 * @return the response entity
+	 */
 	@PostMapping(value = "/add")
 	public ResponseEntity<Object> addVehicle(@RequestBody VehicleAddResource vehicleAddResource) {
 		Integer vehicleId = vehicleService.saveVehicle(vehicleAddResource);

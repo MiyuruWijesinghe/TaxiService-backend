@@ -20,8 +20,6 @@ import com.af.taxi_service.resource.CategoryAddResource;
 import com.af.taxi_service.resource.SuccessAndErrorDetailsResource;
 import com.af.taxi_service.service.CategoryService;
 
-
-
 @RestController
 @RequestMapping(value = "/category")
 @CrossOrigin(origins = "*")
@@ -34,6 +32,11 @@ public class CategoryController {
 	private CategoryService categoryService;
 
 
+	/**
+	 * Gets the all categories.
+	 *
+	 * @return the all categories
+	 */
 	@GetMapping(value = "/all")
 	public ResponseEntity<Object> getAllCategories() {
 		SuccessAndErrorDetailsResource responseMessage = new SuccessAndErrorDetailsResource();
@@ -47,7 +50,12 @@ public class CategoryController {
 	}
 	
 	
-	
+	/**
+	 * Gets the category by id.
+	 *
+	 * @param id - the id
+	 * @return the category by id
+	 */
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Object> getCategoryById(@PathVariable(value = "id", required = true) int id) {
 		SuccessAndErrorDetailsResource responseMessage = new SuccessAndErrorDetailsResource();
@@ -61,6 +69,12 @@ public class CategoryController {
 	}
 	
 	
+	/**
+	 * Adds the category.
+	 *
+	 * @param categoryAddResource - the category add resource
+	 * @return the response entity
+	 */
 	@PostMapping(value = "/add")
 	public ResponseEntity<Object> addCategory(@RequestBody CategoryAddResource categoryAddResource) {
 		Integer categoryId = categoryService.saveCategory(categoryAddResource);

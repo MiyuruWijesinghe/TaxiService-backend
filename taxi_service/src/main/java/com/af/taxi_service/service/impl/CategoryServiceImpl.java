@@ -38,7 +38,12 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	public Optional<Category> findById(int id) {
-		return categoryRepository.findById(id);
+		Optional<Category> category = categoryRepository.findById(id);
+		if (category.isPresent()) {
+			return Optional.ofNullable(category.get());
+		} else {
+			return Optional.empty();
+		}
 	}
 
 	@Override
@@ -49,6 +54,5 @@ public class CategoryServiceImpl implements CategoryService {
 		categoryRepository.save(category);
 		return category.getId();
 	}
-	
-	
+		
 }

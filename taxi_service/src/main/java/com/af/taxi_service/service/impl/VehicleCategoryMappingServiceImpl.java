@@ -27,12 +27,22 @@ public class VehicleCategoryMappingServiceImpl implements VehicleCategoryMapping
 
 	@Override
 	public Optional<VehicleCategoryMapping> findById(int id) {
-		return vehicleCategoryMappingRepository.findById(id);
+		Optional<VehicleCategoryMapping> vehicleCategoryMapping = vehicleCategoryMappingRepository.findById(id);
+		if (vehicleCategoryMapping.isPresent()) {
+			return Optional.ofNullable(vehicleCategoryMapping.get());
+		} else {
+			return Optional.empty();
+		}
 	}
 
 	@Override
 	public Optional<VehicleCategoryMapping> findByCategoryIdAndVehicleId(int categoryId, int vehicleId) {
-		return vehicleCategoryMappingRepository.findByCategorysIdAndVehiclesId(categoryId, vehicleId);
+		Optional<VehicleCategoryMapping> vehicleCategoryMapping = vehicleCategoryMappingRepository.findByCategorysIdAndVehiclesId(categoryId, vehicleId);
+		if (vehicleCategoryMapping.isPresent()) {
+			return Optional.ofNullable(vehicleCategoryMapping.get());
+		} else {
+			return Optional.empty();
+		}
 	}
 
 	@Override
@@ -81,9 +91,12 @@ public class VehicleCategoryMappingServiceImpl implements VehicleCategoryMapping
 				numOfKM = isPresentVehicleCategoryMapping.get().getKilometersNumber();
 			}
 			duration = new BigDecimal(calculateChargeRequestResource.getDuration());
-			chargePerKM = chargeForKM.divide(new BigDecimal(numOfKM));
-			tripCharge = chargePerKM.multiply(duration);
 			
+			if (isPresentVehicleCategoryMapping.get().getChargeForKM() != null && isPresentVehicleCategoryMapping.get().getKilometersNumber() != null) {
+				chargePerKM = chargeForKM.divide(new BigDecimal(numOfKM));
+			}
+			
+			tripCharge = chargePerKM.multiply(duration);
 		}	
 		
 		return "Trip charge is Rs. " + tripCharge.toString();

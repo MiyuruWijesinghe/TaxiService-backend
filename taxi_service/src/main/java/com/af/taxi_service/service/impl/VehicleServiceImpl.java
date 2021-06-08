@@ -60,7 +60,12 @@ public class VehicleServiceImpl implements VehicleService {
 
 	@Override
 	public Optional<Vehicle> findById(int id) {
-		return vehicleRepository.findById(id);
+		Optional<Vehicle> vehicle = vehicleRepository.findById(id);
+		if (vehicle.isPresent()) {
+			return Optional.ofNullable(vehicle.get());
+		} else {
+			return Optional.empty();
+		}
 	}
 
 	@Override

@@ -34,6 +34,12 @@ public class VehicleCategoryMappingController {
 	@Autowired
 	private VehicleCategoryMappingService vehicleCategoryMappingService;
 	
+	
+	/**
+	 * Gets the all vehicle category mappings.
+	 *
+	 * @return the all vehicle category mappings
+	 */
 	@GetMapping(value = "/all")
 	public ResponseEntity<Object> getAllVehicleCategoryMappings() {
 		SuccessAndErrorDetailsResource responseMessage = new SuccessAndErrorDetailsResource();
@@ -47,6 +53,12 @@ public class VehicleCategoryMappingController {
 	}
 	
 	
+	/**
+	 * Gets the vehicle category mapping by id.
+	 *
+	 * @param id - the id
+	 * @return the vehicle category mapping by id
+	 */
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Object> getVehicleCategoryMappingById(@PathVariable(value = "id", required = true) int id) {
 		SuccessAndErrorDetailsResource responseMessage = new SuccessAndErrorDetailsResource();
@@ -60,6 +72,12 @@ public class VehicleCategoryMappingController {
 	}
 	
 	
+	/**
+	 * Gets the vehicle category mapping by vehicle id.
+	 *
+	 * @param vehicleId - the vehicle id
+	 * @return the vehicle category mapping by vehicle id
+	 */
 	@GetMapping(value = "/vehicle/{vehicleId}")
 	public ResponseEntity<Object> getVehicleCategoryMappingByVehicleId(@PathVariable(value = "vehicleId", required = true) int vehicleId) {
 		SuccessAndErrorDetailsResource responseMessage = new SuccessAndErrorDetailsResource();
@@ -73,6 +91,12 @@ public class VehicleCategoryMappingController {
 	}
 	
 	
+	/**
+	 * Gets the vehicle category mapping by category id.
+	 *
+	 * @param categoryId - the category id
+	 * @return the vehicle category mapping by category id
+	 */
 	@GetMapping(value = "/category/{categoryId}")
 	public ResponseEntity<Object> getVehicleCategoryMappingByCategoryId(@PathVariable(value = "categoryId", required = true) int categoryId) {
 		SuccessAndErrorDetailsResource responseMessage = new SuccessAndErrorDetailsResource();
@@ -86,6 +110,13 @@ public class VehicleCategoryMappingController {
 	}
 	
 	
+	/**
+	 * Gets the vehicle category mapping by category id and vehicle id.
+	 *
+	 * @param categoryId - the category id
+	 * @param vehicleId - the vehicle id
+	 * @return the vehicle category mapping by category id and vehicle id
+	 */
 	@GetMapping(value = "/category/{categoryId}/vehicle/{vehicleId}")
 	public ResponseEntity<Object> getVehicleCategoryMappingByCategoryIdAndVehicleId(@PathVariable(value = "categoryId", required = true) int categoryId,
 			@PathVariable(value = "vehicleId", required = true) int vehicleId) {
@@ -100,6 +131,13 @@ public class VehicleCategoryMappingController {
 	}
 	
 	
+	/**
+	 * Update vehicle category mapping.
+	 *
+	 * @param id - the id
+	 * @param vehicleCategoryMappingUpdateResource - the vehicle category mapping update resource
+	 * @return the response entity
+	 */
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<Object> updateVehicleCategoryMapping(@PathVariable(value = "id", required = true) int id,
 			@RequestBody VehicleCategoryMappingUpdateResource vehicleCategoryMappingUpdateResource) {
@@ -109,6 +147,13 @@ public class VehicleCategoryMappingController {
 	}
 	
 	
+	/**
+	 * Calculate trip charge.
+	 *
+	 * @param id - the id
+	 * @param calculateChargeRequestResource - the calculate charge request resource
+	 * @return the response entity
+	 */
 	@PostMapping(value = "/calculate/{id}")
 	public ResponseEntity<Object> calculateTripCharge(@PathVariable(value = "id", required = true) int id,
 			@RequestBody CalculateChargeRequestResource calculateChargeRequestResource) {
